@@ -30,7 +30,7 @@ Exporta personas de contacto asociadas a compañías.
 ```sql
 SELECT c.contactid, c.firstname, c.lastname, c.email, c.phone, c.mobile, c.accountid,
        a.accountname
-INTO OUTFILE '/var/lib/mysql-files/contacts.csv'
+INTO OUTFILE '/tmp/contacts.csv'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 FROM vtiger_contactdetails c
 LEFT JOIN vtiger_account a ON c.accountid = a.accountid;
@@ -46,7 +46,7 @@ Lista de usuarios de Vtiger que interactúan con clientes.
 
 ```sql
 SELECT id, user_name, first_name, last_name, email1, phone_mobile
-INTO OUTFILE '/var/lib/mysql-files/users.csv'
+INTO OUTFILE '/tmp/users.csv'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 FROM vtiger_users;
 ```
@@ -67,7 +67,7 @@ SELECT
     rel_ent.label AS related_name,
     u.user_name AS author,
     ent.createdtime
-INTO OUTFILE '/var/lib/mysql-files/interactions.csv'
+INTO OUTFILE '/tmp/interactions.csv'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 FROM vtiger_modcomments mc
 JOIN vtiger_crmentity ent ON mc.modcommentsid = ent.crmid
@@ -91,7 +91,7 @@ La estructura es: 2015/August/week2, 2015/August/week3, etc
 SELECT 
     att.attachmentsid, att.name, att.path, att.type, rel.crmid AS related_to,
     CONCAT('http://<tu_dominio>/storage/', att.attachmentsid, '_', att.name) AS download_link
-INTO OUTFILE '/var/lib/mysql-files/documents.csv'
+INTO OUTFILE '/tmp/documents.csv'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 FROM vtiger_attachments att
 JOIN vtiger_seattachmentsrel rel ON att.attachmentsid = rel.attachmentsid;
@@ -121,7 +121,7 @@ SELECT
     ent.createdtime,
     ent.modifiedtime,
     pot.description
-INTO OUTFILE '/var/lib/mysql-files/opportunities.csv'
+INTO OUTFILE '/tmp/opportunities.csv'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 FROM vtiger_potential pot
 JOIN vtiger_crmentity ent ON pot.potentialid = ent.crmid
