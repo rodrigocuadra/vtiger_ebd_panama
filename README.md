@@ -13,7 +13,7 @@ Exporta la información principal de empresas clientes.
 ```sql
 SELECT acc.accountid, acc.accountname, acc.website, acc.phone, acc.email1, acc.email2, acc.otherphone, acc.fax,
        addr.bill_city, addr.bill_state, addr.bill_code, addr.bill_country
-INTO OUTFILE '/var/lib/mysql-files/companies.csv'
+INTO OUTFILE '/tmp/companies.csv'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 FROM vtiger_account acc
 JOIN vtiger_accountbillads addr ON acc.accountid = addr.accountaddressid;
