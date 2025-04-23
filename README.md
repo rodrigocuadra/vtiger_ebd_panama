@@ -80,7 +80,10 @@ WHERE ent.deleted = 0;
 
 ## 5. 📎 Documentos Adjuntos
 
-Exporta la lista de archivos adjuntos a registros.
+Exporta la lista de archivos adjuntos a registros.<br>
+Actualmente se tiene  5GB de docuementos desde desde Agosto 2015, hasta Marzo 2025.
+
+La estructura es: 2015/August/week2, 2015/August/week3, etc
 
 **Consulta SQL:**
 
